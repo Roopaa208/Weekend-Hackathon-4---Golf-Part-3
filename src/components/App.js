@@ -1,25 +1,27 @@
 import React, { Component, useEffect, useState } from "react";
 import "./App.css";
 import ReactDOM from "react-dom";
+let x=0,y=0;
 const App = () => {
   const [renderBall, setRenderBall] = useState(false);
-  const [x, setX] = useState(0);
-  const [y, setY] = useState(0);
+  //const [x, setX] = useState(0);
+  //const [y, setY] = useState(0);
   const [ballPosition,setBallPosition] = useState({
     left: "0px",
     top: "0px",
   });
   const reset = () => {
-  setX(0);
-  setY(0);
-    setBallPosition({left:"0px"});
-    setBallPosition({top:"0px"});
+ x=0;
+ y=0;
+    setBallPosition({left:"0px",top:"0px"});
+    setRenderBall(false);
+    renderChoice();
   };
   const renderChoice = () => {
       if(renderBall)
-      return (<div class="ball" style={{position:"absolute",left:ballPosition.left,right:ballPosition.right}}></div>);
+      return (<div className="ball" style={{position:"absolute",left:ballPosition.left,top:ballPosition.top}}></div>);
       else
-      return (<button class="ballProvider" onClick={getBall}>Start</button>);
+      return (<button className="ballProvider" onClick={getBall}>Start</button>);
 
    
   };
@@ -29,17 +31,20 @@ const App = () => {
       renderChoice();
      
   }
+  useEffect(function(){
     document.addEventListener("keydown",(event)=>{
-        if(event.keyCode=='37' || event.key=='LeftArrow')
-        setX(x-5);
-       else if(event.keyCode=='38' || event.key=='UpArrow')
-        setY(y+5);
-        else if(event.keyCode=='39' || event.key=='RightArrow')
-        setX(x+5);
-        else if(event.keyCode=='40' || event.key=='DownArrow')
-        setY(y-5);
-        setBallPosition({left: x+"px", top: y+"px"});
+        if(event.key=="ArrowLeft"||event.keyCode=='37')
+        x=x-5;
+       else if(event.key=="ArrowUp"||event.keyCode=='38' )
+        y=y+5;//setY(y+5);
+        else if( event.key=="ArrowRight"||event.keyCode=='39' )
+        x=x+5;//setX(x+5);
+        else if(event.key=="ArrowDown"||event.keyCode=='40' )
+        y=y-5;//setY(y-5);
+        setBallPosition({left: x+"px",top: y+"px"});
+        console.log(event.key+" "+x+" "+y);
       });
+  },[]);
     
 
 
