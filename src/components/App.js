@@ -29,7 +29,6 @@ const App = () => {
       renderChoice();
      
   }
-  useEffect(function(){
     document.addEventListener("keydown",(event)=>{
         if(event.keyCode=='37' || event.key=='LeftArrow')
         setX(x-5);
@@ -41,8 +40,6 @@ const App = () => {
         setY(y-5);
         setBallPosition({left: x+"px", top: y+"px"});
       });
-
-  },[]);
     
 
 
