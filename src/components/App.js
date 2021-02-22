@@ -17,7 +17,7 @@ const App = () => {
   };
   const renderChoice = () => {
       if(renderBall)
-      return (<div class="ball" style={ballPosition}></div>);
+      return (<div class="ball" style={{position:"absolute",left:ballPosition.left,right:ballPosition.right}}></div>);
       else
       return (<button class="ballProvider" onClick={getBall}>Start</button>);
 
