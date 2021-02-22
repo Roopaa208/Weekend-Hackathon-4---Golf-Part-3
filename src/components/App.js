@@ -16,7 +16,7 @@ const App = () => {
     setBallPosition({top:"0px"});
   };
   const renderChoice = () => {
-    window.addEvenListener("keydown",(event)+>{
+    window.addEvenListener("keydown",(event)=>{
       if(event.keyCode=='37' || event.key=='LeftArrow')
       setX(x-5);
      else if(event.keyCode=='38' || event.key=='UpArrow')
