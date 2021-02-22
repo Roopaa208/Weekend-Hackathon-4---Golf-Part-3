@@ -1,6 +1,6 @@
-import React, { Component, useState } from "react";
+import React, { Component, useEffect, useState } from "react";
 import "./App.css";
-
+import ReactDOM from "react-dom";
 const App = () => {
   const [renderBall, setRenderBall] = useState(false);
   const [x, setX] = useState(0);
@@ -17,7 +17,7 @@ const App = () => {
   };
   const renderChoice = () => {
       if(renderBall)
-      return (<div class="ball"></div>);
+      return (<div class="ball" style={ballPosition}></div>);
       else
       return (<button class="ballProvider" onClick={getBall}>Start</button>);
 
@@ -29,9 +29,8 @@ const App = () => {
       renderChoice();
      
   }
-componentDidMount()
-{
-    window.addEventListener("keydown",(event)=>{
+  useEffect(function(){
+    document.addEventListener("keydown",(event)=>{
         if(event.keyCode=='37' || event.key=='LeftArrow')
         setX(x-5);
        else if(event.keyCode=='38' || event.key=='UpArrow')
@@ -42,7 +41,10 @@ componentDidMount()
         setY(y-5);
         setBallPosition({left: x+"px", top: y+"px"});
       });
-}
+
+  },[]);
+    
+
 
   return (
     <div className="playground">
