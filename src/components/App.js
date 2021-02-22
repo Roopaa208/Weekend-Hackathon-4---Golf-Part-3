@@ -1,5 +1,5 @@
 import React, { Component, useState } from "react";
-import "../styles/App.css";
+import "./App.css";
 
 const App = () => {
   const [renderBall, setRenderBall] = useState(false);
@@ -16,18 +16,33 @@ const App = () => {
     setBallPosition({top:"0px"});
   };
   const renderChoice = () => {
-    window.addEvenListener("keydown",(event)=>{
-      if(event.keyCode=='37' || event.key=='LeftArrow')
-      setX(x-5);
-     else if(event.keyCode=='38' || event.key=='UpArrow')
-      setY(y+5);
-      else if(event.keyCode=='39' || event.key=='RightArrow')
-      setX(x+5);
-      else if(event.keyCode=='40' || event.key=='DownArrow')
-      setY(y+5);
-      setBallPosition({left:x+"px", top:y+"px"});
-    }); 
+      if(renderBall)
+      return (<div class="ball"></div>);
+      else
+      return (<button class="ballProvider" onClick={getBall}>Start</button>);
+
+   
   };
+  function getBall()
+  {
+      setRenderBall(true);
+      renderChoice();
+     
+  }
+componentDidMount()
+{
+    window.addEventListener("keydown",(event)=>{
+        if(event.keyCode=='37' || event.key=='LeftArrow')
+        setX(x-5);
+       else if(event.keyCode=='38' || event.key=='UpArrow')
+        setY(y+5);
+        else if(event.keyCode=='39' || event.key=='RightArrow')
+        setX(x+5);
+        else if(event.keyCode=='40' || event.key=='DownArrow')
+        setY(y-5);
+        setBallPosition({left: x+"px", top: y+"px"});
+      });
+}
 
   return (
     <div className="playground">
