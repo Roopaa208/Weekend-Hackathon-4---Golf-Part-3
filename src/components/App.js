@@ -1,61 +1,66 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/App.css";
-import ReactDOM from "react-dom";
-let x=0,y=0;
+
 const App = () => {
   const [renderBall, setRenderBall] = useState(false);
-  //const [x, setX] = useState(0);
-  //const [y, setY] = useState(0);
-  const [ballPosition,setBallPosition] = useState({
-    left: "0px",
-    top: "0px",
-  });
-  const reset = () => {
- x=0;
- y=0;
-    setBallPosition({left:"0px",top:"0px"});
-    setRenderBall(false);
-    renderChoice();
-  };
-  const renderChoice = () => {
-      if(renderBall)
-      return (<div className="ball" style={{position:"absolute",left:ballPosition.left,top:ballPosition.top}}></div>);
-      else
-      return (<button className="ballProvider" onClick={getBall}>Start</button>);
+  const [posi, setPosi] = useState({ left: 5, top: 5 });
+  const [ballPosition, setBallPosition] = useState({ left: 0, top: 0 });
+  const updateXY =(x,y)=>{
+      setBallPosition(
+          {
+              left:x,
+              top:y,
+          }
+      )
 
-   
-  };
-  function getBall()
-  {
-      setRenderBall(true);
-      renderChoice();
-     
   }
-  useEffect(function(){
-    document.addEventListener("keydown",(event)=>{
-        if(event.key=="ArrowLeft"||event.keyCode=='37')
-        x=x-5;
-       else if(event.key=="ArrowUp"||event.keyCode=='38' )
-        y=y+5;//setY(y+5);
-        else if( event.key=="ArrowRight"||event.keyCode=='39' )
-        x=x+5;//setX(x+5);
-        else if(event.key=="ArrowDown"||event.keyCode=='40' )
-        y=y-5;//setY(y-5);
-        setBallPosition({left: x+"px",top: y+"px"});
-        console.log(event.key+" "+x+" "+y);
-      });
-  },[]);
-    
+  const handleListener=(event)=>{
+    switch (event.key) {
+        case "ArrowRight":
+            updateXY(ballPosition.left + 5,ballPosition.top);
+          break;
+        case "ArrowDown":
+            updateXY(ballPosition.left ,ballPosition.top+5);
+          break;
+        case "ArrowLeft":
+            updateXY(ballPosition.left - 5,ballPosition.top);
+          break;
+        case "ArrowUp":
+            updateXY(ballPosition.left ,ballPosition.top-5);
+          break;
+        default:
+          break;
+      }
 
+  }
 
-  return (
-    <div className="playground">
-      <button onClick={reset} className="reset">
-        Reset
-      </button>
-      {renderChoice()}
-    </div>
-  );
+  // bind ArrowRight keydown event
+  useEffect(() => {
+    const keyListener= document.addEventListener("keydown", handleListener);
+    return ()=> document.removeEventListener("keydown",handleListener);
+  },[ballPosition]);
+
+  const buttonClickHandler = () => {
+    setRenderBall(true);
+  };
+  const renderBallOrButton = () => {
+    if (renderBall) {
+      return (
+        <div
+          className="ball"
+          style={{
+            left: ballPosition.left + "px",
+            top: ballPosition.top + "px",
+            position: "absolute",
+          }}
+        ></div>
+      );
+    } else {
+      return <button onClick={buttonClickHandler}>Click For One Ball</button>;
+    }
+  };
+
+  return <div className="playground">{renderBallOrButton()}</div>;
 };
 
 export default App;
