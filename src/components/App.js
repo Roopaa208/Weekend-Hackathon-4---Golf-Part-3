@@ -36,11 +36,11 @@ const App = () => {
         if(event.key=="ArrowLeft"||event.keyCode=='37')
         x=x-5;
        else if(event.key=="ArrowUp"||event.keyCode=='38' )
-        y=y+5;//setY(y+5);
+        y=y+5;
         else if( event.key=="ArrowRight"||event.keyCode=='39' )
-        x=x+5;//setX(x+5);
+        x=x+5;
         else if(event.key=="ArrowDown"||event.keyCode=='40' )
-        y=y-5;//setY(y-5);
+        y=y-5;
         setBallPosition({left: x+"px",top: y+"px"});
         console.log(event.key+" "+x+" "+y);
       });
