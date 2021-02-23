@@ -19,7 +19,7 @@ const App = () => {
   };
   const renderChoice = () => {
       if(renderBall)
-      return (<div className="ball" style={{position:"absolute",left:ballPosition.left,top:ballPosition.top}}></div>);
+      return (<div className="ball" style={{position:"absolute",left:x+"px",top:y+"px"}}></div>);
       else
       return (<button className="start" onClick={getBall}>Start</button>);
 
