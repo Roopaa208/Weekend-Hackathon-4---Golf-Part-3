@@ -18,7 +18,7 @@ const App = () => {
   if(renderBall)
   return (<div className="ball"></div>);
   else
-  return (<button className="ballProvider" onClick={removebutton}>Start</button>)
+  return (<button className="start" onClick={removebutton}>Start</button>)
  };
 
   return (
