@@ -44,6 +44,7 @@ const App = () => {
         setBallPosition({left: x+"px",top: y+"px"});
         console.log(event.key+" "+x+" "+y);
       });
+    renderChoice();
   },[]);
     
 
