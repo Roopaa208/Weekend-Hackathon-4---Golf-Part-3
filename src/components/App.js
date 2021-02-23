@@ -1,5 +1,5 @@
 import React, { Component, useEffect, useState } from "react";
-import "./App.css";
+import "../styles/App.css";
 import ReactDOM from "react-dom";
 let x=0,y=0;
 const App = () => {
