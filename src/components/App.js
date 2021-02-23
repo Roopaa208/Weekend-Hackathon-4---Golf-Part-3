@@ -21,7 +21,7 @@ const App = () => {
       if(renderBall)
       return (<div className="ball" style={{position:"absolute",left:x+"px",top:y+"px"}}></div>);
       else
-      return (<button className="start" onClick={getBall}>Start</button>);
+      return (<button className="start ballProvider" onClick={getBall}>Start</button>);
 
    
   };
