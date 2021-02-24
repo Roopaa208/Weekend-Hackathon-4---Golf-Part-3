@@ -10,8 +10,8 @@ const App = () => {
     top: "0px",
   });
   const reset = () => {
- x=0;
- y=0;
+setX(0);
+    setY(0);
     setBallPosition({left:"0px",top:"0px"});
     setRenderBall(false);
     renderChoice();
