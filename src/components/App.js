@@ -42,7 +42,6 @@ const App = () => {
         x=x+5;
         if(event.key=="ArrowDown"||event.keyCode=='40')
         y=y+5;
-        setBallPosition({left: x+"px",top: y+"px"});
         console.log(event.key+" "+x+" "+y);
       });
     renderChoice();
