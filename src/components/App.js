@@ -34,13 +34,13 @@ setX(0);
   useEffect(function(){
     document.addEventListener("keydown",(event)=>{
         if(event.key=="ArrowLeft"||event.keyCode=='37')
-        setX(x-5);
+        setX(x=>x-5);
         if(event.key=="ArrowUp"||event.keyCode=='38')
-        setY(y-5);
+        setY(y=>y-5);
         if(event.key=="ArrowRight"||event.keyCode=='39')
-        setX(x+5);
+        setX(x=>x+5);
         if(event.key=="ArrowDown"||event.keyCode=='40')
-        setY(y+5);
+        setY(y=>y+5);
         console.log(event.key+" "+x+" "+y);
       });
     renderChoice();
@@ -59,4 +59,4 @@ setX(0);
   );
 };
 
-export default App;
+export default App
